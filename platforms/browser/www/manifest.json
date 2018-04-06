@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Aeon's End Assistant",
+  "short_name": "Aeon's End Assistant",
+  "version": "com.phonegap.aeonsendassistant",
+  "description": "Helps keep track of important information in Aeon's End, including starting supplies, turn order, nemesis cards, etc.",
+  "icons": [],
+  "orientation": "portrait",
+  "start_url": "index.html"
+}

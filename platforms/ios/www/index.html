@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; media-src *; img-src * data:" />
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/rpg-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Aeon's End</title>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="nav-bump"></div>
+        <div id="the-navbar" class="bg-dark">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col pt-2 pb-1 text-center transition" v-bind:class="{'active-tab':$route.path=='/'}">
+                        <a v-on:touchstart.prevent="$router.push('/')" href="#/">
+                            <div><i class="ra ra-sapphire"></i></div>
+                            <div>Game Setup</div>
+                        </a>
+                    </div>
+                    <div class="col pt-2 pb-1 text-center transition" v-if="boss" v-bind:class="{'active-tab':$route.path=='/turn-order'}">
+                        <a v-on:touchstart.prevent="$router.push('/turn-order')" href="#/turn-order">
+                            <div><i class="ra ra-double-team"></i></div>
+                            <div>Turn Order</div> 
+                        </a>
+                    </div>
+                    <div class="col pt-2 pb-1 text-center transition" v-if="boss" v-bind:class="{'active-tab':$route.path=='/fight'}">
+                        <a v-on:touchstart.prevent="$router.push('/fight')" href="#/fight">
+                            <div><i class="ra ra-hydra"></i></div>
+                            <div>Nemesis</div>
+                        </a>
+                    </div>
+                    <div class="col pt-2 pb-1 text-center transition" v-if="boss" v-bind:class="{'active-tab':touchingNextTurnButton}">
+                        <div 
+                            v-on:touchstart="touchingNextTurnButton = true"
+                            v-on:touchend="nextTurn($event)"
+                        >
+                            <div><i class="fa fa-arrow-circle-right green"></i></div>
+                            <div class="green">Next Turn</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <keep-alive><router-view keep-alive="true">...</router-view></keep-alive>
+        <div class="space"></div>
+        <div v-cloak id="the-footer" class="text-center">
+            <div class="action-ticker small-text">{{tickerText[0]}}</div>
+            <div class="misc-menu-button">
+                <a v-on:touchstart.prevent="$router.push('/misc')" href="#/misc">
+                    <i class="fa fa-question-circle"></i>
+                </a>
+            </div>
+            <span class="" v-bind:class="{transitioning:transitioning}">
+                <span></span>
+                <span v-for="(turnCard, index) in turnOrderDiscardPile">
+                    <span v-if="index !== turnOrderDiscardPile.length-1">{{turnCard[1]}}, </span>
+                    <span class="bold" v-else>Active Turn: {{turnCard[0]}}</span>
+                </span>
+                <span v-if="turnOrderDiscardPile.length===0">Active Turn: None</span>
+            </span>
+        </div>
+
+        <div class="modal fade" id="bossCardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <img class="modal-img" v-bind:src="modalImg">
+
+            </div>
+          </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/vue-router.js"></script>
+    <script type="text/javascript" src="js/underscore.min.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+
+    <script type="text/javascript" src="js/cards.js"></script>
+    <script type="text/javascript" src="js/setup.component.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+
+    <script id="misc" type="text/x-template">
+        <div class="container">
+            <h2 class="text-center mt-2">Other Information</h2>
+            <div class="space"></div>
+            <a href="#/misc" v-on:click="$parent.setModalImg('PlayerReferenceCard', true)"><h3>Player Reference Card</h3></a>
+            <a href="#/misc" v-on:click="$parent.setModalImg('NemesisReferenceCard', true)"><h3>Nemesis Reference Card</h3></a>
+            <a href="https://www.youtube.com/watch?v=KO9O9rO0nPk&feature=youtu.be"><h3>How To Play (Video)</h3></a>
+            <a href="https://boardgamegeek.com/boardgame/191189/aeons-end/forums/0"><h3>Board Game Geek Forums</h3></a>
+            <a href="https://boardgamegeek.com/filepage/141295/aeons-end-final-rulebook"><h3>Online Rulebook</h3></a>
+            <div class="space"></div>
+            <div class="space"></div>
+            <div class="space"></div>
+            <div class="space"></div>
+            <div class="designed-by">Designed by Raphael Serota</div>
+        </div>
+
+    </script>
+
+<!-- TURN ORDER TEMPLATE -->
+    <script id="turn-order" type="text/x-template">
+        <div class="container">
+            <div class="space"></div>
+
+<!-- DRAW PILE -->
+            <h2 class="text-center">Turn Order Deck</h2>
+            <div class="text-center next-card">
+                <strong>Next Card:</strong>
+                <strong v-if="!$parent.turnOrderDrawPile || !$parent.turnOrderDrawPile[0]">Empty</strong>
+                <strong v-else-if="!$parent.showingTopCard" class="zalgo">???</strong>
+                <strong class="top-card" v-if="$parent.showingTopCard && $parent.turnOrderDrawPile.length">
+                    {{$parent.turnOrderDrawPile[$parent.turnOrderDrawPile.length-1][0]}}
+                </strong>
+            </div>
+            <div class="mt-2"></div>
+            <div class="row">
+                <div class="col text-center">
+                    <div> 
+                        <div 
+                            class="btn btn-primary big-button" 
+                            v-on:touchend="$parent.moveTopCardToBottom($event)"
+                        >
+                            <i class="fa fa-share no-events fa-rotate-90 turn-icon"></i>
+                            <div class="small-text no-events">Move Top Card to Bottom</div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+                <div class="col text-center">
+
+                    <div>        
+                        <div class="btn btn-primary big-button"  v-on:touchend="$parent.revealTopCard($event)">
+                            <i v-if="!$parent.showingTopCard" class="fa fa-eye turn-icon"></i>
+                            <i v-if="$parent.showingTopCard" class="fa fa-eye-slash turn-icon"></i>
+                            <div class="small-text">Reveal Top Card of Turn Order Deck</div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+<!-- END DRAW PILE -->
+
+            <hr>
+
+<!-- DISCARD PILE -->
+            <h2 class="text-center">Turn Order Discard Pile</h2>
+            <div class="mt-2"></div>    
+            <div class="row">
+                <div class="col">
+                    <div v-if="$parent.turnOrderDiscardPile.length === 0"><strong>Empty</strong></div>
+                    <ul id="discard-pile">
+                        <li 
+                            class=""
+                            v-for="(player, i) in $parent.turnOrderDiscardPile"
+                            v-on:touchend="$parent.returnToDeck(i, $event)"
+                        >
+                            <strong>{{player[0]}} </strong> <i class="fa fa-reply"></i>
+                        </li>
+                    </ul>
+                    
+                </div>
+                <div class="col text-center">
+                    <button 
+                        class="btn btn-primary big-button" 
+                        v-on:touchend="$parent.shuffleDeck($event)"
+                    >
+                        <i class="fa fa-refresh no-events turn-icon"></i>
+                    <div class="small-text no-events">Shuffle Turn Order Deck</div>
+                    </button>
+                    
+                </div>
+<!-- END DISCARD PILE -->
+
+            </div>
+            <div class="mt-5"></div>
+            <div class="mt-5"></div>
+        </div>
+    </script>
+<!-- END TURN ORDER TEMPLATE -->
+
+<!-- FIGHT TEMPLATE -->
+    <script id="fight" type="text/x-template">
+        <div class="container">
+            <div class="space"></div>
+            <div class="row">
+                <div class="col-5">
+                    <h2>Gravehold</h2>
+                </div>
+
+                <div class="col-3 text-center">
+                    <span class="fa-stack fa-stack-1x">
+                        <i class="fa fa-heart fa-2x fa-stack-2x"></i>
+                        <strong class="health fa-stack-1x monospace">{{$parent.graveHoldHealth}}</strong>
+                    </span>
+
+                </div>
+                <div class="col-4 text-right">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button 
+                            type="button"
+                            v-bind:class="{disabled: $parent.graveHoldHealth === 0}"
+                            v-on:touchstart.stop="$parent.startChangeHealth('graveHoldHealth', -1, $event)" 
+                            v-on:touchend.stop="$parent.stopChangeHealth()" 
+                            class="btn btn-primary plusminus"><span class="no-events">-</span>
+                        </button>
+                        <button 
+                            type="button" 
+                            v-bind:class="{disabled: $parent.graveHoldHealth === 40}"
+                            v-on:touchstart.stop="$parent.startChangeHealth('graveHoldHealth', 1, $event)" 
+                            v-on:touchend.stop="$parent.stopChangeHealth()" 
+                            class="btn btn-primary plusminus"><span class="no-events">+</span>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+            <hr>
+            <div class="space"></div>
+            <div class="row">
+                <div class="col-5">
+                    <h2 class="nowrap">Nemesis <span class="tier">(Tier {{$parent.tier}})</span></h2>
+
+                </div>
+
+                <div class="col-3 text-center">
+                    <span class="fa-stack fa-stack-1x">
+                        <i class="fa fa-heart fa-2x fa-stack-2x"></i>
+                        <strong class="health fa-stack-1x monospace">{{$parent.bossHealth}}</strong>
+                    </span>
+
+                </div>
+                <div class="col-4 text-right">
+                    <div class="btn-group" role="group" aria-label="...">
+
+                        <button 
+                            class="btn btn-primary plusminus" 
+                            v-bind:class="{disabled: $parent.bossHealth === 0}"
+                            v-on:touchstart.stop="$parent.startChangeHealth('bossHealth', -1, $event)"
+                            v-on:touchend.stop="$parent.stopChangeHealth()" 
+                        >
+                            <span class="no-events">-</span>
+                        </button>
+                        <button 
+                            class="btn btn-primary plusminus" 
+                            v-bind:class="{disabled: $parent.bossHealth === 99}"
+                            v-on:touchstart.stop="$parent.startChangeHealth('bossHealth', 1, $event)"
+                            v-on:touchend.stop="$parent.stopChangeHealth()" 
+                        >
+                            <span class="no-events">+</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+            <div v-if="$parent.boss && $parent.boss.hasTokens" class="tokens">
+                <div class="space"></div>
+                <div class="row">
+                    <div class="col-5">
+                        <h2>Nemesis Tokens</h2>
+                    </div>
+
+                    <div class="col-3 text-center">
+                        <span class="fa-stack fa-stack-1x">
+                            <i class="fa fa-certificate fa-2x fa-stack-2x"></i>
+                            <strong class="health fa-stack-1x monospace">{{$parent.tokens}}</strong>
+                        </span>
+
+                    </div>
+                    <div class="col-4 text-right">
+                        <div class="btn-group">
+                            <button 
+                                class="btn btn-primary plusminus" 
+                                v-bind:class="{disabled: $parent.tokens === 0}"
+                                v-on:touchstart.stop="$parent.startChangeHealth('tokens', -1, $event)"
+                                v-on:touchend.stop="$parent.stopChangeHealth()" 
+                            >
+                            <span class="no-events">-</span>
+                            </button>
+                            <button 
+                                class="btn btn-primary plusminus" 
+                                v-bind:class="{disabled: $parent.tokens === 16}"
+                                v-on:touchstart.stop="$parent.startChangeHealth('tokens', 1, $event)"
+                                v-on:touchend.stop="$parent.stopChangeHealth()" 
+                            >
+                            <span class="no-events">+</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="top-margin">Cards In Play</h2>
+                </div>
+                <div class="col-6 text-center">
+
+                    <button 
+                        class="btn btn-primary pull-right draw-boss-card-button" 
+                        v-on:touchend="drawBossCard"
+                    >
+                    <span>Draw<br>({{$parent.bossCardsDrawPile.length}})</span>
+                    </button>
+
+                </div>
+            </div>
+            <!-- <img v-for="card in $parent.bossCards" v-bind:src="'img/'+card.name+'.jpg'"> -->
+            <div class="boss-cards-container">
+                <boss-card 
+                    v-for="(card, index) in $parent.bossCardsInPlay" 
+                    v-bind:card="card"
+                    v-bind:class="{hasPassive: card.hasPassive}"
+                    v-bind:discarded="false"
+                    v-on:rewind="moveBossCardToTop(card, index)"
+                    v-on:discard="discard(card, index)"
+                    v-on:setModalImg="$parent.setModalImg(card)" 
+                    :key="card.name"
+                ></boss-card> 
+            </div>
+            <div class="oldnew in-play">
+                <span class="oldest">Oldest</span>
+                <span class="newest">Newest</span>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12">
+                    <div class="" role="tab" id="headingDiscard">
+                        <h5 class="mb-0">
+                            <a data-toggle="collapse" target="#collapseDiscardPile" aria-expanded="true" aria-controls="collapseDiscardPile">
+                                <h2 class="inline">Discard Pile</h2>
+                                <span v-if="$parent.collapses.collapseDiscardPile"><i class="plusminus fa fa-minus-circle"></i></span>
+                                <span v-if="!$parent.collapses.collapseDiscardPile"><i class="plusminus fa fa-plus-circle"></i></span>
+                            </a>
+                        </h5>
+                    </div>
+
+                    <div id="collapseDiscardPile" class="collapse show" role="tabpanel" aria-labelledby="headingDiscard">
+                    
+
+                        <div class="boss-cards-container">
+                            <boss-card 
+                                v-for="(card, index) in $parent.bossCardsDiscardPile" 
+                                v-bind:card="card"
+                                v-on:discard="discard(card, index)"
+                                v-on:rewind="moveBossCardToPlay(card, index)"
+                                v-on:movebosscardtobottom="moveBossCardToBottom(card, index)"
+                                v-bind:discarded="true"
+                                v-on:setModalImg="$parent.setModalImg(card)" 
+                                
+                                :key="card.name"
+                            ></boss-card> 
+                        </div>
+                        <div class="oldnew">
+                            <span class="oldest">Oldest</span>
+                            <span class="newest">Newest</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="space"></div>
+            <div class="mt-5"></div>
+        </div>
+    </script>
+<!-- END FIGHT TEMPLATE -->
+
+<!-- START SETUP TEMPLATE -->
+    <script id="setup" type="text/x-template">
+        <div>
+            <div class="container-fluid no-pad">
+                <div class="small-space"></div>
+
+
+                <div id="accord" role="tablist" aria-multiselectable="true">
+                    <div id="collapse-set-one">
+                        <div class="" role="tab" id="headingOne">
+                            <h5 class="mb-0 text-center">
+                                <a data-toggle="collapse" data-parent="#accordion" target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Players and Expansions
+                                    <span v-if="$parent.collapses.collapseOne"><i class="plusminus fa fa-minus-circle"></i></span>
+                                    <span v-if="!$parent.collapses.collapseOne"><i class="plusminus fa fa-plus-circle"></i></span>
+                                </a>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="card-block">
+
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <p class="vert-center">How many people are playing?</p>
+                                    </div>
+                                    <div class="col text-right">
+                                        <select 
+                                            class="form-control number-of-players" 
+                                            v-model="$parent.numberOfPlayers" 
+                                            v-on:change="setNumberOfPlayers($parent.numberOfPlayers)"
+                                        >
+                                            <option value="1">1 (3 turn cards)</option>
+                                            <option value="1.5">1 (4 turn cards)</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option selected value="4">4</option>
+                                        </select>
+                                    </div>
+                                </div> 
+                                <div class="space"></div>
+
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <p class="vert-center">Which expansions are you using?</p>
+                                    </div>
+                                    <div class="col text-right">
+                                        <select multiple 
+                                            class="form-control " 
+                                            v-model="$parent.expansions"
+                                            v-on:change="saveExpansions"
+                                        >
+                                            <option value="AE">Aeon's End</option>
+                                            <option value="Depths">The Depths</option>
+                                            <option value="Nameless">The Nameless</option>
+                                            <option value="WE">War Eternal</option>
+                                            <option value="TV">The Void</option>
+                                            <option value="OD">The Outer Dark</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="">
+                        <div class="" role="tab" id="headingTwo">
+                            <h5 class="mb-0 text-center">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Market Setup Cards
+                                    <span v-if="$parent.collapses.collapseTwo"><i class="plusminus fa fa-minus-circle"></i></span>
+                                    <span v-if="!$parent.collapses.collapseTwo"><i class="plusminus fa fa-plus-circle"></i></span>
+                                </a>
+                                <span 
+                                    v-if="$parent.boss" 
+                                    v-on:touchend="chosenMarketSetup && chosenMarketSetup.setUp(); setBoss(); setMages()" 
+                                    class="refresh-icon">All
+                                    <i class="fa fa-refresh"></i>
+                                </span>
+                                
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="card-block">
+                                <div class="market-setup-container text-center">
+                                    <img 
+                                        class="market-setup-image" 
+                                        v-for="setup in marketSetups" 
+                                        v-bind:src="setup.imgPath"
+                                        v-on:touchstart="chosenMarketSetup = setup"
+
+                                        v-on:touchend="chosenMarketSetup && chosenMarketSetup.setUp(); setBoss(); setMages(); hideModals()"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr v-if="$parent.boss">
+                    <div v-if="$parent.boss" class="">
+                        <div class="" role="tab" id="headingThree">
+                            <h5 class="mb-0 text-center">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                  Nemesis
+                                    <span v-if="$parent.collapses.collapseThree"><i class="plusminus fa fa-minus-circle"></i></span>
+                                    <span v-if="!$parent.collapses.collapseThree"><i class="plusminus fa fa-plus-circle"></i></span>
+                                </a>
+                                <i 
+                                    class="fa fa-refresh refresh-icon"
+                                    v-on:touchend="setBoss()"
+                                ></i>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse show" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="card-block">
+                                <div class=" text-center">
+                                    <div class="boss-card short">
+                                        <select v-model="$parent.boss" class="nemesis-select" v-on:change="setBoss($parent.boss)">
+                                            <option v-for="boss in bosses" v-bind:value="boss">
+                                                {{`${boss.name.trim()}  (${boss.expansion}, ${boss.difficulty})`}} 
+                                            </option>
+                                        </select>
+                                    </div>
+<!--                                     <boss-card 
+                                        class="short"
+                                        v-if="$parent.boss"
+                                        v-bind:card="$parent.boss"
+                                        v-bind:discarded="true"
+                                        v-on:setModalImg="$parent.setModalImg($parent.boss)" 
+                                        :key="$parent.boss.name"
+                                    ></boss-card> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr v-if="$parent.mages.length">
+                    <div v-if="$parent.mages.length" class="">
+                        <div class="" role="tab" id="headingFour">
+                            <h5 class="mb-0 text-center">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Mages
+                                    <span v-if="$parent.collapses.collapseFour"><i class="plusminus fa fa-minus-circle"></i></span>
+                                    <span v-if="!$parent.collapses.collapseFour"><i class="plusminus fa fa-plus-circle"></i></span>
+                                </a>
+                                <i 
+                                    class="fa fa-refresh refresh-icon"
+                                    v-on:touchend="setMages()"
+                                ></i>
+                            </h5>
+                        </div>
+                        <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingFour">
+                            <div class="card-block">
+                                <div class=" text-center">
+                                    <boss-card 
+                                        class="short wide"
+                                        v-if="$parent.mages.length"
+                                        v-for="mage in $parent.mages"
+                                        v-bind:card="mage"
+                                        v-bind:setup="true"
+                                        v-on:setModalImg="$parent.setModalImg(mage)" 
+                                        :key="mage.name"
+                                    ></boss-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr v-if="$parent.currentMarket.length">
+                    <div v-if="$parent.currentMarket.length" class="">
+                        <div class="" role="tab" id="headingFive">
+                            <h5 class="mb-0 text-center">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    Market
+                                    <span v-if="$parent.collapses.collapseFive"><i class="plusminus fa fa-minus-circle"></i></span>
+                                    <span v-if="!$parent.collapses.collapseFive"><i class="plusminus fa fa-plus-circle"></i></span>
+                                </a>
+                                <i 
+                                    class="fa fa-refresh refresh-icon"
+                                    v-on:touchend="chosenMarketSetup && chosenMarketSetup.setUp(); setBoss($parent.boss)"
+                                ></i>
+                            </h5>
+                        </div>
+                        <div id="collapseFive" class="collapse show" role="tabpanel" aria-labelledby="headingFive">
+                            <div class="card-block">
+                                <div class=" text-center">
+                                    <boss-card 
+                                        class="short wide"
+                                        v-if="$parent.currentMarket.length"
+                                        v-for="card in $parent.currentMarket"
+                                        v-bind:card="card"
+                                        v-bind:setup="true"
+                                        v-on:setModalImg="$parent.setModalImg(card)" 
+                                        :key="card.name"
+                                    ></boss-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5"></div>
+        </div>
+
+    </script>
+<!-- END SETUP TEMPLATE -->
+
+    <script id="boss-card" type="text/x-template">
+        <div class="boss-card" 
+            v-on:touchend.prevent="setModalImg"
+        >
+
+            <div v-if="card.type && ['A','M','P'].includes(card.type[0])" class="boss-card-type">{{card.type[0]}}</div>
+            <div v-if="card.type && ['R','G','S'].includes(card.type[0])" class="player-card-type">{{card.type[0]}}</div>
+            <div v-if="card.type && ['R','G','S'].includes(card.type[0])" class="player-card-expansion">{{card.expansion}}</div>
+            <div class="monospace boss-card-strength" v-if="strength !== null">{{strength}}</div>
+            <div v-if="card.cost" class="boss-card-cost">{{card.cost}}</div>
+            <div 
+                class="boss-card-return-to-deck" 
+                v-if="discarded && ['Hasten', 'Distort', 'Infinite Emnity', 'Rift Scourge'].includes(card.name)"
+            >
+                <i class="fa fa-reply" v-on:touchend.stop="moveBossCardToBottom"></i>
+            </div>
+                
+            <p >
+                <strong>{{truncate(card.name)}}</strong>
+            </p>
+            <div class="row no-gutters" v-if="strength !== null && !discarded && !setup">
+                <div class="col text-center">
+                    <div class="btn-group">
+                        <button 
+                            class="btn btn-primary plusminus" 
+                            v-bind:class="{disabled: strength === 0}"
+                            v-on:touchstart.prevent.stop="startChangeStrength(-1, $event)"
+                            v-on:touchend.prevent.stop="stopChangeStrength()"
+                        >
+                        <span class="no-events">-</span>
+                        </button>
+                        <button 
+                            v-bind:class="{disabled: (card.strength !== '*' && strength === card.strength) || (card.strength === '*' && strength > 50)}"
+                            class="btn btn-primary plusminus" 
+                            v-on:touchstart.prevent.stop="startChangeStrength(1, $event)"
+                            v-on:touchend.prevent.stop="stopChangeStrength()"
+                        >
+                        <span class="no-events">+</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center boss-card-trash" v-if="!strength && !discarded && !setup">
+                <i class="fa fa-trash" v-on:touchend.stop="discard"></i>
+            </div>
+            <div class="text-center boss-card-rewind" v-if="!setup && (strength || discarded) && card.type">
+                <i class="fa fa-undo" v-on:touchend.stop="rewind"></i>
+            </div>
+            <div class="text-center boss-card-rewind alt" v-if="card.type=='Attack' && !setup && !discarded">
+                <i class="fa fa-undo" v-on:touchend.stop="rewind"></i>
+            </div>
+
+        </div>
+    </script>
+
+</body>
+
+</html>

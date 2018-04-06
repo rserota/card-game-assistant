@@ -1,0 +1,570 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color: rgb(190,190,190);
+/*    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    background-attachment:fixed;*/
+/*    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+*/    font-size:12px;
+    margin:0px;
+    padding:0px;
+    min-height: 100vh;
+}
+
+[v-cloak] * {
+    display: none;
+}
+
+hr {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+    margin:0;
+}
+
+h3 {
+    font-size: 1.1rem;
+
+}
+
+#app i {
+    font-size: 46px;
+}
+
+#app i.plusminus {
+    font-size: 18px;
+}
+
+#app i.refresh-icon {
+    font-size: 22px;
+}
+#app .refresh-icon i {
+    font-size: 22px;
+}
+
+#app a:link, #app a:active, #app a:visited, #app a:hover {
+    text-decoration: none;
+    text-decoration-color: rgba(0,0,0,0);
+}
+
+#the-navbar {
+    position: fixed;
+    z-index: 500;
+    top:0;
+    left:0;
+    min-height: 79px;
+    width: 100vw;
+    font-size: 13px;
+}
+
+#turn-order-overlay {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: #111;
+    color: ghostwhite;
+    z-index: 600;
+    pointer-events: none;
+    font-size: 20rem;
+}
+
+#the-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #343a40;
+    /*height: 8vh;*/
+    padding: 5px;
+    font-size: 16px;
+    width: 100vw;
+    color: ghostwhite;
+}
+
+#discard-pile {
+    padding: 0;
+}
+#app .btn.big-button {
+    width: 100%;
+    max-width: 300px;
+}
+#discard-pile li {
+    list-style-type: none;
+    padding: 1vh;
+    border: 1px solid black;
+    background-color: ghostwhite;
+    border-radius: 8px;
+    margin: 11px;
+    text-align: center;
+    position: relative;
+}
+
+#app #discard-pile i {
+    font-size: 18px;
+    position: absolute;
+    right: 2px;
+}
+
+.designed-by {
+    text-align: right;
+}
+
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.btn-primary:focus, .btn-primary:active {
+    background-color: #007bff;
+}
+
+.btn.btn-primary.disabled {
+    background-color: #057ff0;
+    color: lightgray;
+}
+
+#app .turn-icon {
+    font-size: 36px;
+}
+
+span.fa-stack {
+    top: -10px;
+}
+
+#app .misc-menu-button {
+    position: absolute;
+    right: 5px;
+}
+
+#app .misc-menu-button i {
+    font-size: 22px;
+}
+
+#app .btn.draw-boss-card-button {
+    padding: .2rem;
+    width: 100%;
+    max-width: 76px;
+}
+
+.transition {
+    transition: all .3s;
+}
+
+.active-tab {
+    background-color: rgb(190,190,190);
+}
+
+.transitioning {
+    opacity: 0;
+}
+
+.refresh-icon {
+    position: absolute;
+    right: 10px;
+    font-weight: lighter;
+
+}
+
+.monospace {
+    font-family: monospace;
+}
+
+.health {
+    font-size: 15px;
+    color: ghostwhite;
+    position: absolute;
+    top: 50%;
+    /*left: 50%;*/
+    /*transform: translateY(-50%) translateX(-50%);*/
+    /*transform: translateY(-50%);*/
+}
+.nav-bump {
+    height: 100px;
+}
+
+.top-margin { 
+    margin-top: 13px;
+}
+
+.next-card {
+    font-size: 1rem;
+}
+
+.space {
+    height: 20px;
+}
+
+#collapse-set-one {
+    padding: 0px 15px;
+}
+.small-space {
+    height: 10px;
+}
+
+#app a.green, #app .green {
+    color: green;
+    position: relative;
+    top: 2px;
+}
+.number-of-players {
+    width: 100%;
+    display: inline-block;
+}
+
+.inline {
+    display: inline-block;
+}
+
+#app .btn-primary {
+    width: 20vw;
+    height: auto;
+    word-wrap: break-word;
+    white-space: normal;
+    margin: 0px;
+    border: 1px solid #111;
+}
+
+#app .btn.btn-primary.pressed {
+    background-color: #0066aa;
+}
+
+.btn-primary:hover {
+    background-color: #007bff;
+}
+
+#app .btn.btn-primary.plusminus {
+    width: 38px;
+    margin: initial;
+    font-weight:bold;
+    padding: 0;
+    transition: background-color .06s;
+}
+
+#app .fa.fa-trash {
+    font-size: 38px;
+}
+
+#app .fa.fa-heart {
+    font-size: 50px;
+}
+
+#app .fa.fa-undo {
+    font-size: 32px;
+}
+
+
+#app .btn.btn-primary.plusminus span {
+    font-size: 26px;
+    position: relative;
+    bottom: 1px;
+}
+/*#app .boss-card .btn.btn-primary.plusminus {
+    width: 60px;
+    border-radius: 500px;
+    opacity: .95;
+}*/
+
+.boss-cards-container {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    /*-webkit-overflow-scrolling: auto;*/
+}
+
+.boss-card.hasPassive {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border: 3px solid #007bff;
+}
+
+.small-text {
+    font-size: .7rem;
+}
+
+.action-ticker {
+    min-height: 16px;
+}
+
+.tier {
+    font-size: .8rem; 
+    font-weight: lighter;
+}
+.nowrap {
+    white-space: nowrap;
+}
+
+.nemesis-select {
+    font-size: 1.2rem;
+    text-align-last:center;
+    /*font-weight: bold;*/
+}
+.boss-card-type {
+    /*background-color: #111;*/
+    color: rgba(30,30,30, .4);
+    font-family: monospace;
+    /*border-radius: 100px;*/
+    /*z-index:20;*/
+    position: absolute;
+    left: 3px;
+    top: 22px;
+    z-index:0;
+    pointer-events: none;
+    font-size: 22px;
+    /*transform: translate(-50%, -50%);*/
+}
+
+.no-events {
+    pointer-events: none;
+}
+
+.boss-card-cost {
+    position: absolute;
+    right: -3px;
+    top: -1px;
+    background-color: lightsteelblue;
+    border-radius: 99px;
+    height: 18px;
+    width: 18px;
+}
+
+.player-card-type {
+    color: rgba(30,30,30, .4);
+    font-family: monospace;
+    position: absolute;
+    left:   3px; 
+    bottom: -2px;
+}
+
+.player-card-expansion {
+    color: rgba(30,30,30, .4);
+    font-family: monospace;
+    position: absolute;
+    right:   3px; 
+    bottom: -2px;
+}
+
+.boss-card-strength {
+    position: absolute;
+    left: 3px;
+    bottom: -2px;
+    font-size: 22px;
+}
+
+.boss-card-trash {
+    position: absolute;
+    right: 3px;
+    bottom: -6px;
+}
+.boss-card-rewind {
+    position: absolute;
+    right: 3px;
+    bottom: 4px;
+}
+
+.boss-card-rewind.alt {
+    right: 40px;
+}
+
+.boss-card-return-to-deck {
+    position: absolute;
+    right: 40px;
+    bottom: 4px;
+}
+
+#app .fa.fa-reply {
+    font-size: 32px;
+}
+
+.zalgo {
+    margin: 20px;
+}
+.boss-card.wide {
+    width: 47vw;
+}
+.market-setup-container {
+    overflow-x:scroll;
+    white-space: nowrap;
+    /*-webkit-overflow-scrolling: auto;*/
+}
+
+.vert-center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.market-setup-image {
+    height: 200px;
+    width: 141px;
+    margin: 8px;
+    display: inline-block;
+}
+
+.market-card-image {
+    height: 250px;
+    width: auto;
+    margin: 8px;
+    display: inline-block;
+    border: 1px solid #111;
+}
+
+.relative {
+    position: relative;
+}
+
+.abs-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translate(-50%, -50%);
+
+}
+
+/* big photo of the boss itself*/
+.boss-photo {
+    width: 100vw;
+    /*max-width: 500px;*/
+    height: auto;
+    display: block;
+}
+
+/* cards drawn from the nemesis dec*/
+.boss-card {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    border: 1px outset #111;
+    margin: 3px;
+    padding: 3px;
+    height: 80px;
+    min-width: 145px;
+    background-color: ghostwhite;
+    border-radius: 8px;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.no-pad {
+    padding: 0;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.boss-card.short {
+    height: 35px;
+}
+
+.boss-card.short p {
+    margin: 0;
+    font-weight: 100;
+    font-size:1rem;
+}
+
+.boss-card p {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+
+.boss-card .fa-trash {
+    position: relative;
+    bottom: 8px;
+    opacity: .85;
+}
+
+.mage-photo {
+    width: 50vw;
+    /*max-width: 300px;*/
+    height: auto;
+}
+
+.modal-img {
+    max-height: 90vh;
+}
+
+.oldnew {
+    position: relative;
+}
+
+.oldest, .newest {
+    position: absolute;
+    /*background-color: rgb(190,190,190);*/
+    color: rgb(60,60,60);
+}
+
+.in-play {
+    height: 9px;
+}
+.in-play .oldest {
+    left: 0;
+}
+.in-play .newest {
+    right: 0;
+}
+
+#collapseDiscardPile .oldest {
+    right: 0;
+}
+
+#collapseDiscardPile .newest {
+    left: 0;
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+
+}
+
+
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}

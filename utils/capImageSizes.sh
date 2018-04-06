@@ -1,0 +1,1 @@
+ for i in *.jpg; do convert "$i" -define jpeg:extent=100kb "../small-art/$i"; done
