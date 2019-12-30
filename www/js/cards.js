@@ -75,25 +75,25 @@ var Card = function(name, type, cost, expansion){
 
 cardsGem = [
     new Card('Jade','Gem',2,'AE'),
-	new Card('Sifters Pearl','Gem',3,'AE'),
-	new Card('Vriswood Amber','Gem',3,'AE'),
-	new Card('Leeching Agate','Gem',3,'Nameless'),
-	new Card('Diamond Cluster','Gem',4,'AE'),
-	new Card('Searing Ruby','Gem',4,'AE'),
-	new Card('Burning Opal','Gem',5,'AE'),
-	new Card('Banishing Topaz','Gem',5,'Depths'),
-	new Card('Clouded Sapphire','Gem',6,'AE'),
-	new Card('Bloodstone Jewel','Gem',6,'WE'),
-	new Card('Breach Ore','Gem',4,'WE'),
-	new Card('Dread Diamond','Gem',3,'WE'),
-	new Card('Erratic Ingot','Gem',5,'WE'),
-	new Card('Frozen Magmite','Gem',3,'WE'),
-	new Card('Scoria Slag','Gem',4,'WE'),
-	new Card('Volcanic Glass','Gem',3,'WE'),
-	new Card('Alien Element','Gem',4,'OD'),
-	new Card('Haunted Berylite','Gem',3,'OD'),
-	new Card('Pain Stone','Gem',6,'OD'),
-	new Card('Fossilized Scarab','Gem',3,'TV'),
+    new Card('Sifters Pearl','Gem',3,'AE'),
+    new Card('Vriswood Amber','Gem',3,'AE'),
+    new Card('Leeching Agate','Gem',3,'Nameless'),
+    new Card('Diamond Cluster','Gem',4,'AE'),
+    new Card('Searing Ruby','Gem',4,'AE'),
+    new Card('Burning Opal','Gem',5,'AE'),
+    new Card('Banishing Topaz','Gem',5,'Depths'),
+    new Card('Clouded Sapphire','Gem',6,'AE'),
+    new Card('Bloodstone Jewel','Gem',6,'WE'),
+    new Card('Breach Ore','Gem',4,'WE'),
+    new Card('Dread Diamond','Gem',3,'WE'),
+    new Card('Erratic Ingot','Gem',5,'WE'),
+    new Card('Frozen Magmite','Gem',3,'WE'),
+    new Card('Scoria Slag','Gem',4,'WE'),
+    new Card('Volcanic Glass','Gem',3,'WE'),
+    new Card('Alien Element','Gem',4,'OD'),
+    new Card('Haunted Berylite','Gem',3,'OD'),
+    new Card('Pain Stone','Gem',6,'OD'),
+    new Card('Fossilized Scarab','Gem',3,'TV'),
     new Card('Soothing Torporene','Gem',3,'Legacy'),
     new Card('Conductive Grit','Gem',3,'Legacy'),
     new Card('Echo Stone','Gem',4,'Promos'),
@@ -109,23 +109,23 @@ cardsGem = [
     new Card('Muted Lacosite','Gem',5,'BS'),
     new Card('Mentite Chunk','Gem',5,'BS'),
     new Card('Oblivium Resin','Gem',5,'BS'),
-    new Card('Shining Tetrite','Gem',6,'BS')	
+    new Card('Shining Tetrite','Gem',6,'BS')    
 ];
 
 cardsSpell = [
     new Card('Phoenix Flame','Spell',3,'AE'),
-	new Card('Spectral Echo','Spell',3,'AE'),
-	new Card('Amplify Vision','Spell',4,'AE'),
-	new Card('Ignite','Spell',4,'AE'),
-	new Card('Lava Tendril','Spell',4,'AE'),
-	new Card('Void Bond','Spell',4,'Depths'),
-	new Card('Blaze','Spell',4,'Nameless'),
-	new Card('Dark Fire','Spell',5,'AE'),
-	new Card('Essence Theft','Spell',5,'AE'),
-	new Card('Feral Lightning','Spell',5,'AE'),
-	new Card('Oblivion Swell','Spell',5,'AE'),
-	new Card('Combustion','Spell',5,'Depths'),
-	new Card('Chaos Arc','Spell',6,'AE'),
+    new Card('Spectral Echo','Spell',3,'AE'),
+    new Card('Amplify Vision','Spell',4,'AE'),
+    new Card('Ignite','Spell',4,'AE'),
+    new Card('Lava Tendril','Spell',4,'AE'),
+    new Card('Void Bond','Spell',4,'Depths'),
+    new Card('Blaze','Spell',4,'Nameless'),
+    new Card('Dark Fire','Spell',5,'AE'),
+    new Card('Essence Theft','Spell',5,'AE'),
+    new Card('Feral Lightning','Spell',5,'AE'),
+    new Card('Oblivion Swell','Spell',5,'AE'),
+    new Card('Combustion','Spell',5,'Depths'),
+    new Card('Chaos Arc','Spell',6,'AE'),
     new Card('Planar Insight','Spell',6,'AE'),
     new Card('Wildfire Whip','Spell',6,'AE'),
     new Card('Devouring Shadow','Spell',6,'Depths'),
@@ -136,7 +136,7 @@ cardsSpell = [
     new Card('Sages Brand','Spell',7,'Nameless'),
     new Card('Monstrous Inferno','Spell',8,'Depths'),
     new Card('Radiance','Spell',8,'Nameless'),
-	new Card('Aurora','Spell',5,'WE'),
+    new Card('Aurora','Spell',5,'WE'),
     new Card('Carbonize','Spell',4,'WE'),
     new Card('Conjure The Lost','Spell',6,'WE'),
     new Card('Celestial Spire','Spell',5,'WE'),
@@ -161,28 +161,28 @@ cardsSpell = [
     new Card('Fulminate','Spell',5,'TV'),
     new Card('Inner Fire','Spell',2,'TV'),
     new Card('Thermal Dart','Spell',4,'TV'),
-	new Card('Fleeting Vision','Spell',3,'Promos'),
-	new Card('Sparking Siphon','Spell',3,'Legacy'),
-	new Card('Force Transfusion','Spell',4,'Legacy'),
-	new Card('Breach Communion','Spell',4,'Legacy'),
-	new Card('Splinter Missle','Spell',5,'Legacy'),
-	new Card('Fiery Conclusion','Spell',5,'Legacy'),
-	new Card('Arcane Salvo','Spell',5,'Legacy'),
-	new Card('Pyro Geist','Spell',6,'Legacy'),
-	new Card('Starfire Frenzy','Spell',6,'Legacy'),
-	new Card('Drown in Flames','Spell',6,'Promos'),
-	new Card('Breach Collision','Spell',7,'Legacy'),
-	new Card('Sphere of Inversion','Spell',8,'Legacy'),
-	new Card('Thunderous Oath','Spell',8,'Legacy'),
-	new Card('Nerve Jab','Spell',2,'BS'),
-	new Card('Draining Touch','Spell',2,'BS'),
-	new Card('Precision Shot','Spell',3,'BS'),
-	new Card('Double Tap','Spell',3,'BS'),
-	new Card('Burning Current','Spell',3,'BS'),
-	new Card('Flash of Intellect','Spell',4,'BS'),
-	new Card('Stunning Force','Spell',5,'BS'),
-	new Card('Blade of Wisdom','Spell',6,'BS'),
-	new Card('Psychic Eruption','Spell',8,'BS')
+    new Card('Fleeting Vision','Spell',3,'Promos'),
+    new Card('Sparking Siphon','Spell',3,'Legacy'),
+    new Card('Force Transfusion','Spell',4,'Legacy'),
+    new Card('Breach Communion','Spell',4,'Legacy'),
+    new Card('Splinter Missle','Spell',5,'Legacy'),
+    new Card('Fiery Conclusion','Spell',5,'Legacy'),
+    new Card('Arcane Salvo','Spell',5,'Legacy'),
+    new Card('Pyro Geist','Spell',6,'Legacy'),
+    new Card('Starfire Frenzy','Spell',6,'Legacy'),
+    new Card('Drown in Flames','Spell',6,'Promos'),
+    new Card('Breach Collision','Spell',7,'Legacy'),
+    new Card('Sphere of Inversion','Spell',8,'Legacy'),
+    new Card('Thunderous Oath','Spell',8,'Legacy'),
+    new Card('Nerve Jab','Spell',2,'BS'),
+    new Card('Draining Touch','Spell',2,'BS'),
+    new Card('Precision Shot','Spell',3,'BS'),
+    new Card('Double Tap','Spell',3,'BS'),
+    new Card('Burning Current','Spell',3,'BS'),
+    new Card('Flash of Intellect','Spell',4,'BS'),
+    new Card('Stunning Force','Spell',5,'BS'),
+    new Card('Blade of Wisdom','Spell',6,'BS'),
+    new Card('Psychic Eruption','Spell',8,'BS')
 ];
 
 cardsRelic = [
@@ -225,7 +225,7 @@ var BossCard = function(name, type, tier, expansion, armor, strength, boss, hasP
     this.type = type
     this.tier = tier
     this.expansion = expansion
-	this.armor = armor
+    this.armor = armor
     this.strength = strength
     this.boss = boss
     this.hasPassive = hasPassive || false
@@ -404,7 +404,7 @@ var cardsBoss = [
     new BossCard('Aether Flux','Power',3,'Nameless',null,2,'Wayward One'),
     new BossCard('Netherspawn','Minion',3,'Nameless',null,15,'Wayward One',true),
     new BossCard('Shunt','Attack',3,'Nameless',null,null,'Wayward One'),
-	
+
     new BossCard('Beseech','Attack',1,'WE',null,null,'Hollow Crown'),
     new BossCard('Enslave','Attack',1,'WE',null,null,'Hollow Crown'),
     new BossCard('Thronewatch','Minion',1,'WE',null,6,'Hollow Crown'),
@@ -496,7 +496,7 @@ var cardsBoss = [
     new BossCard('Iron Charger','Minion',3,'Legacy',null,13,'Bladius'),
     new BossCard('Fleche','Power',3,'Legacy',null,2,'Bladius'),
     new BossCard('Flying Guillotine','Power',3,'Legacy',null,2,'Bladius'),
-	
+
     new BossCard('Thought Quake','Attack',2,'Legacy',null,null,'Deathmind'),
     new BossCard('Brain Wipe','Attack',3,'Legacy',null,null,'Deathmind'),
     new BossCard('Mind Feast','Attack',1,'Legacy',null,null,'Deathmind'),
@@ -507,7 +507,7 @@ var cardsBoss = [
     new BossCard('Nightmare','Minion',3,'Legacy',null,17,'Deathmind'),
     new BossCard('Cortex Jailer','Minion',2,'Legacy',null,4,'Deathmind'),
     new BossCard('Kinetic Construct','Minion',1,'Legacy',null,7,'Deathmind'),
-	
+
     new BossCard('Deadly Overload','Power',1,'Legacy',null,3,'Fungal Mesh'),
     new BossCard('Redirected Power','Power',2,'Legacy',null,3,'Fungal Mesh'),
     new BossCard('Influence','Attack',1,'Legacy',null,null,'Fungal Mesh'),
@@ -517,7 +517,7 @@ var cardsBoss = [
     new BossCard('Dominion Spores','Minion',1,'Legacy',null,6,'Fungal Mesh'),
     new BossCard('Brama,Infested','Minion',2,'Legacy',null,10,'Fungal Mesh'),
     new BossCard('Psychic Clouds','Minion',3,'Legacy',null,15,'Fungal Mesh'),
-	
+
     new BossCard('Venomous Coil','Power',1,'Legacy',null,3,'Maelstrom: Risen'),
     new BossCard('Slice','Power',1,'Legacy',null,3,'Maelstrom: Risen'),
     new BossCard('Ferocious Assault','Power',2,'Legacy',null,3,'Maelstrom: Risen'),
@@ -532,7 +532,7 @@ var cardsBoss = [
     new BossCard('Accelerated Breeding','Power',2,'Legacy',null,2,'Spawning Horror'),
     new BossCard('Organic Forge','Power',3,'Legacy',null,2,'Spawning Horror'),
     new BossCard('Amplify Energy','Power',1,'Legacy',null,3,'Spawning Horror'),
-    new BossCard('Nest Defender','Minion',3,'Legacy',null,11,'Spawning Horror'),	
+    new BossCard('Nest Defender','Minion',3,'Legacy',null,11,'Spawning Horror'),
     new BossCard('Unearth','Attack',1,'Legacy',null,null,'Spawning Horror'),
     new BossCard('Construct','Attack',1,'Legacy',null,null,'Spawning Horror'),
     new BossCard('Retribution','Attack',2,'Legacy',null,null,'Spawning Horror'),
@@ -547,7 +547,7 @@ var cardsBoss = [
     new BossCard('Prelatus of Fire','Minion',1,'Legacy',null,7,'Xaxos: Ascended'),
     new BossCard('Prelatus of Lore','Minion',2,'Legacy',null,15,'Xaxos: Ascended'),
     new BossCard('Prelatus of Death','Minion',3,'Legacy',null,24,'Xaxos: Ascended')
-	
+
 //placeholders for ease of future additions
 //    new BossCard('PLACEHOLDER','Attack',1,'Legacy',null,null,'basic'),
 //    new BossCard('PLACEHOLDER','Power',1,'Legacy',null,2,'basic'),
