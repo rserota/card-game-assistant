@@ -27,7 +27,14 @@ var bosses = [
     new Boss('Deathmind','Legacy',80,true,6),//
     new Boss('Fungal Mesh','Legacy',70,false,4),//
     new Boss('Spawning Horror','Legacy',50,false,3),//
-    new Boss('Bladius','Legacy',40,false,1)//
+    new Boss('Bladius','Legacy',40,false,1),//
+    new Boss('Ageless Walker','New Age',80,false,5),//
+    new Boss('Arachnos','New Age',70,true,4),//
+    new Boss('Fenrix','New Age',60,false,7),//
+    new Boss('Maggoth','New Age',45,true,3),//
+    new Boss('Necroswarm','Into the Wild',70,true,7),//
+    new Boss('The Wailing','Shattered Dreams',50,false,6),//
+    new Boss('The Wanderer','The Ancients',40,false,5)//
 ];
 
 var Mage = function(name, expansion){
@@ -63,7 +70,20 @@ mages = [
     new Mage('Blue_legacy','Legacy'),
     new Mage('Green_legacy','Legacy'),
     new Mage('Red_legacy','Legacy'),
-    new Mage('Yellow_legacy','Legacy')
+    new Mage('Yellow_legacy','Legacy'),
+    new Mage('Claudia','New Age'),
+    new Mage('Gygar','New Age'),
+    new Mage('Talix','New Age'),
+    new Mage('Soskel','New Age'),
+    new Mage('Rhia','New Age'),
+    new Mage('Sahala','New Age'),
+    new Mage('Taqren','New Age'),
+    new Mage('Lost','New Age'),
+    new Mage('Nook','Shattered Dreams'),
+    new Mage('Mazra','The Ancients'),
+    new Mage('Qu','The Ancients'),
+    new Mage('Razra','Into the Wild'),
+    new Mage('Inco','Into the Wild')
 ];
 
 var Card = function(name, type, cost, expansion){
@@ -109,7 +129,18 @@ cardsGem = [
     new Card('Muted Lacosite','Gem',5,'BS'),
     new Card('Mentite Chunk','Gem',5,'BS'),
     new Card('Oblivium Resin','Gem',5,'BS'),
-    new Card('Shining Tetrite','Gem',6,'BS')    
+    new Card('Shining Tetrite','Gem',6,'BS'),
+    new Card('Lurking Sionite','Gem',3,'New Age'),
+    new Card('Exogranite','Gem',3,'New Age'),
+    new Card('Resonant Pearl','Gem',3,'New Age'),
+    new Card('Recurring Jasper','Gem',4,'New Age'),
+    new Card('Energized Rubidium','Gem',5,'New Age'),
+    new Card('Unrefined Blastone','Gem',6,'New Age'),
+    new Card('Olivinite','Gem',3,'Shattered Dreams'),
+    new Card('Cache Glass','Gem',3,'Shattered Dreams'),
+    new Card('Jeweled Brain','Gem',3,'Into the Wild'),
+    new Card('Shining Fluorite','Gem',7,'The Ancients'),
+    new Card('Fractured Quartz','Gem',4,'Promos')
 ];
 
 cardsSpell = [
@@ -182,7 +213,32 @@ cardsSpell = [
     new Card('Flash of Intellect','Spell',4,'BS'),
     new Card('Stunning Force','Spell',5,'BS'),
     new Card('Blade of Wisdom','Spell',6,'BS'),
-    new Card('Psychic Eruption','Spell',8,'BS')
+    new Card('Psychic Eruption','Spell',8,'BS'),
+    new Card('Tethered Darts','Spell',3,'New Age'),
+    new Card('Force Amplifier','Spell',4,'New Age'),
+    new Card('Reverbating Shock','Spell',4,'New Age'),
+    new Card('Imbued Smash','Spell',5,'New Age'),
+    new Card('Fatal Harmony','Spell',5,'New Age'),
+    new Card('Deluge of Power','Spell',6,'New Age'),
+    new Card('Bouncing Boom','Spell',6,'New Age'),
+    new Card('Patterned Strike','Spell',7,'New Age'),
+    new Card('Spirit Lift','Spell',8,'New Age'),
+    new Card('Fleeting Vision','Spell',3,'Promos'),
+    new Card('Splinter Missle','Spell',5,'Promos'),
+    new Card('Thieving Spirit','Spell',5,'Promos'),
+    new Card('Drown in Flames','Spell',6,'Promos'),
+    new Card('Illuminating Flames','Spell',6,'Promos'),
+    new Card('Chronal Arc','Spell',7,'Promos'),
+    new Card('Dual Flash','Spell',3,'The Ancients'),
+    new Card('Dust Caller','Spell',5,'The Ancients'),
+    new Card('Symbiotic Synapse','Spell',7,'The Ancients'),
+    new Card('Mantra of Strength','Spell',3,'Shattered Dreams'),
+    new Card('Crescendo Ray','Spell',4,'Shattered Dreams'),
+    new Card('Storm Vapors','Spell',4,'Shattered Dreams'),
+    new Card('Breach Seeker','Spell',5,'Shattered Dreams'),
+    new Card('Snap Ritual','Spell',6,'Shattered Dreams'),
+    new Card('Embody Flame','Spell',7,'Shattered Dreams'),
+    new Card('Wound Mender','Spell',8,'Into the Wild')
 ];
 
 cardsRelic = [
@@ -217,7 +273,22 @@ cardsRelic = [
     new Card('Living Gauntlet','Relic',4,'BS'),
     new Card('Manifold Container','Relic',4,'BS'),
     new Card('Soul Cords','Relic',5,'BS'),
-    new Card('Bottled Star','Relic',9,'BS')
+    new Card('Bottled Star','Relic',9,'BS'),
+    new Card('Abacus of Ignition','Relic',4,'Promos'),
+    new Card('Rock Launcher','Relic',3,'Promos'),
+    new Card('Reflective Conduit','Relic',3,'Shattered Dreams'),
+    new Card('Will Weaver','Relic',7,'Shattered Dreams'),
+    new Card('Marble Galaxy','Relic',2,'New Age'),
+    new Card('Pain Conduit','Relic',2,'New Age'),
+    new Card('Caged Fire','Relic',3,'New Age'),
+    new Card('Galvanized Bauble','Relic',3,'New Age'),
+    new Card('Aether Conduit','Relic',4,'New Age'),
+    new Card('Link Conduit','Relic',6,'New Age'),
+    new Card('Well of Energy','Relic',7,'New Age'),
+    new Card('Polyphase Turbine','Relic',3,'The Ancients'),
+    new Card('Breach Extractor','Relic',5,'The Ancients'),
+    new Card('Focusing Conduit','Relic',5,'The Ancients'),
+    new Card('Blast Sphere','Relic',8,'Into the Wild')
 ];
 
 var BossCard = function(name, type, tier, expansion, armor, strength, boss, hasPassive) {
@@ -322,6 +393,42 @@ var cardsBoss = [
     new BossCard('Armored Haze','Minon',2,'BS',4,1,'basic'),
     new BossCard('Mailed Shade','Minon',3,'BS',1,8,'basic',true),
 
+// nemesis cards from New Age - 9
+    new BossCard('Planar Collision','Power',1,'New Age',null,2,'basic'),
+    new BossCard('Spirit Snare','Power',1,'New Age',null,3,'basic'),
+    new BossCard('Ceaseless Darkness','Power',1,'New Age',null,2,'basic'),
+    new BossCard('Unnerving Howl','Power',1,'New Age',null,2,'basic'),
+    new BossCard('Chaos Orb','Power',1,'New Age',null,3,'basic'),
+    new BossCard('Morbid Gyre','Power',2,'New Age',null,1,'basic'),
+    new BossCard('Gravity Splinter','Power',2,'New Age',null,2,'basic'),
+    new BossCard('Obliterating Meteor','Power',2,'New Age',null,1,'basic'),
+    new BossCard('Culling Scythe','Power',2,'New Age',null,2,'basic'),
+    new BossCard('Doom Aegis','Power',3,'New Age',null,1,'basic'),
+    new BossCard('Gnashing Maw','Power',3,'New Age',null,2,'basic'),
+    new BossCard('Crushing Storm','Power',3,'New Age',null,1,'basic'),
+    new BossCard('Hex of Destruction','Power',3,'New Age',null,2,'basic'),
+    new BossCard('Decimate','Attack',1,'New Age',null,null,'basic'),
+    new BossCard('Rend','Attack',1,'New Age',null,null,'basic'),
+    new BossCard('Aether Shock','Attack',1,'New Age',null,null,'basic'),
+    new BossCard('Disorient','Attack',1,'New Age',null,null,'basic'),
+    new BossCard('Mutilate','Attack',2,'New Age',null,null,'basic'),
+    new BossCard('Fugue','Attack',2,'New Age',null,null,'basic'),
+    new BossCard('Dement','Attack',2,'New Age',null,null,'basic'),
+    new BossCard('Decay','Attack',2,'New Age',null,null,'basic'),
+    new BossCard('Sunder','Attack',3,'New Age',null,null,'basic'),
+    new BossCard('Topple','Attack',3,'New Age',null,null,'basic'),
+    new BossCard('Disperse','Attack',3,'New Age',null,null,'basic'),
+    new BossCard('Eliminate','Attack',3,'New Age',null,null,'basic'),
+    new BossCard('Gore','Attack',3,'New Age',null,null,'basic'),
+    new BossCard('Blind Enigma','Minion',1,'New Age',null,7,'basic'),
+    new BossCard('Drillbeak Wurm','Minion',1,'New Age',null,6,'basic'),
+    new BossCard('Carriode Colony','Minion',1,'New Age',null,8,'basic'),
+    new BossCard('Portal Guardian','Minion',2,'New Age',null,8,'basic'),
+    new BossCard('Volcanic Zala','Minion',2,'New Age',null,10,'basic'),
+    new BossCard('Needlemaw','Minion',2,'New Age',null,11,'basic'),
+    new BossCard('Eternal Watcher','Minion',3,'New Age',null,10,'basic'),
+    new BossCard('Monstrosity of Omens','Minion',3,'New Age',null,5,'basic',true),
+
 // Promos
     new BossCard('Baneful Crux','Power',2,'Promos',null,2,'basic'),
     new BossCard('Decimate','Attack',1,'Promos',null,null,'basic'),// no image
@@ -333,8 +440,9 @@ var cardsBoss = [
     new BossCard('Spirit Cage','Power',1,'Promos',null,3,'basic'),// no image
     new BossCard('Unmake','Attack',3,'Promos',null,null,'basic'),// no image
     new BossCard('World Purge','Power',3,'Promos',null,2,'basic'),
+    new BossCard('Banesire','Minion',1,'Promos',null,6,'basic'),// no image
 
-//Bosses
+// Bosses
     new BossCard('Broodwomb','Minion',1,'AE',null,5,'Carapace Queen',true),
     new BossCard('Endless Throng','Attack',1,'AE',null,null,'Carapace Queen'),
     new BossCard('Hatch','Attack',1,'AE',null,null,'Carapace Queen'),
@@ -546,10 +654,88 @@ var cardsBoss = [
     new BossCard('Prelatus of Pain','Minion',1,'Legacy',null,6,'Xaxos: Ascended'),
     new BossCard('Prelatus of Fire','Minion',1,'Legacy',null,7,'Xaxos: Ascended'),
     new BossCard('Prelatus of Lore','Minion',2,'Legacy',null,15,'Xaxos: Ascended'),
-    new BossCard('Prelatus of Death','Minion',3,'Legacy',null,24,'Xaxos: Ascended')
+    new BossCard('Prelatus of Death','Minion',3,'Legacy',null,24,'Xaxos: Ascended'),
+	
+// New Age bosses
+    new BossCard('Age Siphon','Attack',1,'New Age',null,null,'Ageless Walker'),
+    new BossCard('Enveloping Ooze','Minion',1,'New Age',null,5,'Ageless Walke'),
+    new BossCard('Temporal Leap','Power',1,'New Age',null,3,'Ageless Walke'),
+    new BossCard('Burden of Knowledge','Power',2,'New Age',null,3,'Ageless Walke'),
+    new BossCard('Rush of Madness','Power',2,'New Age',null,3,'Ageless Walke'),
+    new BossCard('Timmeless Serpent','Minion',2,'New Age',null,12,'Ageless Walke'),
+    new BossCard('Forget','Attack',3,'New Age',null,null,'Ageless Walke'),
+    new BossCard('Siege of Dust','Power',3,'New Age',null,1,'Ageless Walke'),
+    new BossCard('Spire of Bone','Minion',3,'New Age',null,16,'Ageless Walke'),
+
+    new BossCard('Bolster','Attack',1,'New Age',null,null,'Arachnos'),
+    new BossCard('Breach Stabilizer','Power',1,'New Age',null,2,'Arachnos'),
+    new BossCard('The Chanters','Minion',1,'New Age',null,4,'Arachnos'),
+    new BossCard('Unveil','Attack',2,'New Age',null,null,'Arachnos'),
+    new BossCard('Empower Ritual','Power',2,'New Age',null,3,'Arachnos'),
+    new BossCard('Flame Acolyte','Minion',2,'New Age',null,8,'Arachnos'),
+    new BossCard('Terminate','Attack',3,'New Age',null,null,'Arachnos'),
+    new BossCard('The End','Power',3,'New Age',null,4,'Arachnos'),
+    new BossCard('Ritual Guardian','Minion',3,'New Age',null,15,'Arachnos'),
+
+    new BossCard('Dodge','Attack',1,'New Age',null,null,'Fenrix'),
+    new BossCard('Crazed Whelps','Power',1,'New Age',null,3,'Fenrix'),
+    new BossCard('Rally the Pack','Power',1,'New Age',null,2,'Fenrix'),
+    new BossCard('Obscure','Attack',2,'New Age',null,null,'Fenrix'),
+    new BossCard('Spring of Fury','Power',2,'New Age',null,3,'Fenrix'),
+    new BossCard('Hunting Claw','Minion',2,'New Age',null,8,'Fenrix',true),
+    new BossCard('Lacerate','Attack',3,'New Age',null,null,'Fenrix'),
+    new BossCard('Aether Blizzard','Power',3,'New Age',null,2,'Fenrix'),
+    new BossCard('Molten Alpha','Minion',3,'New Age',null,15,'Fenrix'),
+
+    new BossCard('Morph','Attack',1,'New Age',null,null,'Maggoth'),
+    new BossCard('Hive Surge','Power',1,'New Age',null,1,'Maggoth'),
+    new BossCard('Fly Throng','Power',1,'New Age',null,3,'Maggoth'),
+    new BossCard('Overrun','Attack',2,'New Age',null,null,'Maggoth'),
+    new BossCard('Shape Death','Power',2,'New Age',null,3,'Maggoth'),
+    new BossCard('Vile Breeder','Minion',2,'New Age',null,9,'Maggoth'),
+    new BossCard('Vivify','Attack',3,'New Age',null,null,'Maggoth'),
+    new BossCard('Egg Burst','Power',3,'New Age',null,1,'Maggoth'),
+    new BossCard('Savage Spawner','Minion',3,'New Age',null,17,'Maggoth'),
+
+    new BossCard('Scorched Advance','Attack',1,'Into the Wild',null,null,'Necroswarm'),
+    new BossCard('Regroup','Attack',1,'Into the Wild',null,null,'Necroswarm'),
+    new BossCard('March of Horror','Power',1,'Into the Wild',null,2,'Necroswarm'),
+    new BossCard('Sprawling Swamp','Power',2,'Into the Wild',null,2,'Necroswarm'),
+    new BossCard('To The Walls','Power',2,'Into the Wild',null,3,'Necroswarm'),
+    new BossCard('Frenzied Army','Minion',2,'Into the Wild',null,10,'Necroswarm'),
+    new BossCard('Mob','Attack',3,'Into the Wild',null,null,'Necroswarm'),
+    new BossCard('Rapid Germination','Power',3,'Into the Wild',null,2,'Necroswarm'),
+    new BossCard('Entwined General','Minion',3,'Into the Wild',null,15,'Necroswarm',true),
+
+    new BossCard('Accelerate','Attack',1,'Shattered Dreams',null,null,'The Wailing'),
+    new BossCard('Onyx Flood','Attack',1,'Shattered Dreams',null,null,'The Wailing'),
+    new BossCard('Ghostly Stalker','Minion',1,'Shattered Dreams',null,5,'The Wailing'),
+    new BossCard('Barrage','Attack',2,'Shattered Dreams',null,null,'The Wailing'),
+    new BossCard('Magma Skinwing','Minion',2,'Shattered Dreams',null,9,'The Wailing',true),
+    new BossCard('Sonic Skinwing','Minion',2,'Shattered Dreams',null,7,'The Wailing'),
+    new BossCard('Nullify','Attack',3,'Shattered Dreams',null,null,'The Wailing'),
+    new BossCard('Arc of Destruction','Power',3,'Shattered Dreams',null,2,'The Wailing'),
+    new BossCard('Shrapnel Skinwing','Minion',3,'Shattered Dreams',null,15,'The Wailing'),
+
+    new BossCard('Channeled Focus','Power',1,'The Ancients',null,3,'The Wanderer'),
+    new BossCard('Regenerative Light','Power',1,'The Ancients',null,3,'The Wanderer'),
+    new BossCard('Energizing Archon','Minion',1,'The Ancients',null,4,'The Wanderer',true),
+    new BossCard('Protective Aura','Power',2,'The Ancients',null,3,'The Wanderer'),
+    new BossCard('Blazing Archon','Minion',2,'The Ancients',null,10,'The Wanderer'),
+    new BossCard('Shield Archon','Minion',2,'The Ancients',null,12,'The Wanderer',true),
+    new BossCard('Animate','Attack',3,'The Ancients',null,null,'The Wanderer'),
+    new BossCard('Revive','Attack',3,'The Ancients',null,null,'The Wanderer'),
+    new BossCard('Meteor Pylon','Minion',3,'The Ancients',null,22,'The Wanderer',true),
+
 
 //placeholders for ease of future additions
-//    new BossCard('PLACEHOLDER','Attack',1,'Legacy',null,null,'basic'),
-//    new BossCard('PLACEHOLDER','Power',1,'Legacy',null,2,'basic'),
-//    new BossCard('PLACEHOLDER','Minion',1,'Legacy',null,2,'basic'),
+    new BossCard('PLACEHOLDER','Attack',1,'New Age',null,null,'basic'),
+    new BossCard('PLACEHOLDER','Power',1,'New Age',null,2,'basic'),
+    new BossCard('PLACEHOLDER','Minion',1,'New Age',null,2,'basic'),
+    new BossCard('PLACEHOLDER','Attack',2,'New Age',null,null,'basic'),
+    new BossCard('PLACEHOLDER','Power',2,'New Age',null,2,'basic'),
+    new BossCard('PLACEHOLDER','Minion',2,'New Age',null,2,'basic'),
+    new BossCard('PLACEHOLDER','Attack',3,'New Age',null,null,'basic'),
+    new BossCard('PLACEHOLDER','Power',3,'New Age',null,2,'basic'),
+    new BossCard('PLACEHOLDER','Minion',3,'New Age',null,2,'basic'),
 ]
