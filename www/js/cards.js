@@ -594,7 +594,7 @@ var cardsBoss = [
     new BossCard('Pulsing Madness','Power',3,'OD',null,2,'Wraithmonger'),
     new BossCard('Unhinge','Attack',3,'OD',null,null,'Wraithmonger'),
 
-//legacy bosses
+// Legacy bosses
     new BossCard('Vile Impaler','Minion',1,'Legacy',null,5,'Bladius'),
     new BossCard('Lunge','Attack',1,'Legacy',null,null,'Bladius'),
     new BossCard('Parry','Attack',1,'Legacy',null,null,'Bladius'),
@@ -725,17 +725,16 @@ var cardsBoss = [
     new BossCard('Shield Archon','Minion',2,'The Ancients',null,12,'The Wanderer',true),
     new BossCard('Animate','Attack',3,'The Ancients',null,null,'The Wanderer'),
     new BossCard('Revive','Attack',3,'The Ancients',null,null,'The Wanderer'),
-    new BossCard('Meteor Pylon','Minion',3,'The Ancients',null,22,'The Wanderer',true),
-
+    new BossCard('Meteor Pylon','Minion',3,'The Ancients',null,22,'The Wanderer',true)
 
 //placeholders for ease of future additions
-    new BossCard('PLACEHOLDER','Attack',1,'New Age',null,null,'basic'),
-    new BossCard('PLACEHOLDER','Power',1,'New Age',null,2,'basic'),
-    new BossCard('PLACEHOLDER','Minion',1,'New Age',null,2,'basic'),
-    new BossCard('PLACEHOLDER','Attack',2,'New Age',null,null,'basic'),
-    new BossCard('PLACEHOLDER','Power',2,'New Age',null,2,'basic'),
-    new BossCard('PLACEHOLDER','Minion',2,'New Age',null,2,'basic'),
-    new BossCard('PLACEHOLDER','Attack',3,'New Age',null,null,'basic'),
-    new BossCard('PLACEHOLDER','Power',3,'New Age',null,2,'basic'),
-    new BossCard('PLACEHOLDER','Minion',3,'New Age',null,2,'basic'),
+//    new BossCard('PLACEHOLDER','Attack',1,'New Age',null,null,'basic'),
+//    new BossCard('PLACEHOLDER','Power',1,'New Age',null,2,'basic'),
+//    new BossCard('PLACEHOLDER','Minion',1,'New Age',null,2,'basic'),
+//    new BossCard('PLACEHOLDER','Attack',2,'New Age',null,null,'basic'),
+//    new BossCard('PLACEHOLDER','Power',2,'New Age',null,2,'basic'),
+//    new BossCard('PLACEHOLDER','Minion',2,'New Age',null,2,'basic'),
+//    new BossCard('PLACEHOLDER','Attack',3,'New Age',null,null,'basic'),
+//    new BossCard('PLACEHOLDER','Power',3,'New Age',null,2,'basic'),
+//    new BossCard('PLACEHOLDER','Minion',3,'New Age',null,2,'basic'),
 ]
