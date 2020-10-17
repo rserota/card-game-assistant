@@ -489,17 +489,29 @@ var cardsBoss = [
     new BossCard('Eternal Watcher','Minion',3,'New Age',null,10,'basic'),
     new BossCard('Monstrosity of Omens','Minion',3,'New Age',null,5,'basic',true),
 
-// nemesis cards from Outcasts - ????????
-
-
-// nemesis cards from Return to Gravehold - 34
-
-
-// nemesis cards from Southern Village - 34
-
-
-
-
+// nemesis cards from Outcasts - 22
+    new BossCard('Hemorrhage','Attack',1,'Outcasts',null,null,'basic'),
+    new BossCard('Withering Rot','Attack',1,'Outcasts',null,null,'basic'),
+    new BossCard('Weeping Hex','Attack',1,'Outcasts',null,null,'basic'),
+    new BossCard('Noxious Winds','Power',1,'Outcasts',null,2,'basic'),
+    new BossCard('Haunted Force','Power',1,'Outcasts',null,2,'basic'),
+    new BossCard('Aura Drain','Power',1,'Outcasts',null,2,'basic'),
+    new BossCard('Moonstruck Hound','Minion',1,'Outcasts',null,5,'basic',true),
+    new BossCard('Wandering Lasher','Minion',1,'Outcasts',null,6,'basic',true),
+    new BossCard('Marked For Death','Attack',2,'Outcasts',null,null,'basic'),
+    new BossCard('Conjured Grapple','Attack',2,'Outcasts',null,null,'basic'),
+    new BossCard('Suffocating Haze','Power',2,'Outcasts',null,3,'basic'),
+    new BossCard('Toxic Subterfuge','Power',2,'Outcasts',null,3,'basic'),
+    new BossCard('Seeking Destruction','Power',2,'Outcasts',null,3,'basic'),
+    new BossCard('Wandering Observer','Minion',2,'Outcasts',null,11,'basic',true),
+    new BossCard('Chitin Crawler','Minion',2,'Outcasts',null,9,'basic',true),
+    new BossCard('Topple','Attack',3,'Outcasts',null,null,'basic'),
+    new BossCard('Throttle','Attack',3,'Outcasts',null,null,'basic'),
+    new BossCard('Breach Spire','Attack',3,'Outcasts',null,null,'basic'),
+    new BossCard('Darkening Depths','Power',3,'Outcasts',null,1,'basic'),
+    new BossCard('Endless Torment','Power',3,'Outcasts',null,2,'basic'),
+    new BossCard('Apocalypse Ritual','Power',3,'Outcasts',null,2,'basic'),
+    new BossCard('Nyx, the Spine Cruncher','Minion',3,'Outcasts',null,14,'basic'),
 
 // Promos
     new BossCard('Baneful Crux','Power',2,'Promos',null,2,'basic'),
@@ -806,26 +818,91 @@ var cardsBoss = [
     new BossCard('Shield Archon','Minion',2,'The Ancients',null,12,'The Wanderer',true),
     new BossCard('Animate','Attack',3,'The Ancients',null,null,'The Wanderer'),
     new BossCard('Revive','Attack',3,'The Ancients',null,null,'The Wanderer'),
-    new BossCard('Meteor Pylon','Minion',3,'The Ancients',null,22,'The Wanderer',true)
+    new BossCard('Meteor Pylon','Minion',3,'The Ancients',null,22,'The Wanderer',true),
 
 // Outcasts
+    new BossCard('Bound','Attack',1,'Outcasts',null,null,'Experiment 153'),
+    new BossCard('Cascading Casualties','Power',1,'Outcasts',null,2,'Experiment 153'),
+    new BossCard('Corrupting Chitterer','Minion',1,'Outcasts',null,6,'Experiment 153'),
+    new BossCard('Lunging Jaws','Attack',2,'Outcasts',null,null,'Experiment 153'),
+    new BossCard('Scaled Flesh','Power',2,'Outcasts',null,3,'Experiment 153'),
+    new BossCard('Aural Carnivore','Minion',2,'Outcasts',null,10,'Experiment 153',true),
+    new BossCard('Divide and Devour','Attack',3,'Outcasts',null,null,'Experiment 153'),
+    new BossCard('Restless Maws','Power',3,'Outcasts',null,2,'Experiment 153'),
+    new BossCard('Vein Worms','Minion',3,'Outcasts',null,16,'Experiment 153'),
 
+    new BossCard('Arise','Attack',1,'Outcasts',null,null,'Fountain of Souls'),
+    new BossCard('Loss of Will','Power',1,'Outcasts',null,2,'Fountain of Souls'),
+    new BossCard('Energy Leech','Minion',1,'Outcasts',null,6,'Fountain of Souls',true),
+    new BossCard('Spirit Drain','Attack',2,'Outcasts',null,null,'Fountain of Souls'),
+    new BossCard('Soul Frenzy','Power',2,'Outcasts',null,3,'Fountain of Souls'),
+    new BossCard('Murky Voidborn','Minion',2,'Outcasts',null,11,'Fountain of Souls',true),
+    new BossCard('Whirlpool','Attack',3,'Outcasts',null,null,'Fountain of Souls'),
+    new BossCard('Rushing Tides','Power',3,'Outcasts',null,2,'Fountain of Souls'),
+    new BossCard('Starry Smogling','Minion',3,'Outcasts',null,16,'Fountain of Souls',true),
+
+    new BossCard('Imbue','Attack',1,'Outcasts',null,null,'Risen Thrall'),
+    new BossCard('Vampiric Thrall','Attack',1,'Outcasts',null,null,'Risen Thrall'),
+    new BossCard('Engulfing Hordes','Power',1,'Outcasts',null,2,'Risen Thrall'),
+    new BossCard('Twisting Deceit','Attack',2,'Outcasts',null,null,'Risen Thrall'),
+    new BossCard('Thrall Hybrid','Power',2,'Outcasts',null,3,'Risen Thrall'),
+    new BossCard('Spiralling Illusion','Minion',2,'Outcasts',null,11,'Risen Thrall',true),
+    new BossCard('Undying Force','Attack',3,'Outcasts',null,null,'Risen Thrall'),
+    new BossCard('Cutting Image','Power',3,'Outcasts',null,2,'Risen Thrall'),
+    new BossCard('Distortion Smoke','Minion',3,'Outcasts',null,13,'Risen Thrall',true),
+
+//has a turn order card that needs to be added
+    new BossCard('Backlash','Attack',1,'Outcasts',null,null,'Thief of Dreams'),
+    new BossCard('Deluge of Magic','Power',1,'Outcasts',null,3,'Thief of Dreams'),
+    new BossCard('Dream Devourer','Minion',1,'Outcasts',null,8,'Thief of Dreams'),
+    new BossCard('Fool\'s Bargain','Power',2,'Outcasts',null,2,'Thief of Dreams'),
+    new BossCard('Spiralling Nightmare','Power',2,'Outcasts',null,2,'Thief of Dreams'),
+    new BossCard('Scion of Dreams','Minion',2,'Outcasts',null,10,'Thief of Dreams'),
+    new BossCard('Siphon Memories','Attack',3,'Outcasts',null,null,'Thief of Dreams'),
+    new BossCard('Aether Drain','Attack',3,'Outcasts',null,null,'Thief of Dreams'),
+    new BossCard('Eternal Dreamer','Minion',3,'Outcasts',null,17,'Thief of Dreams',true),
 
 // Return to Gravehold
+    new BossCard('Collapsing Earth','Attack',1,'Return to Gravehold',null,null,'Burrower'),
+    new BossCard('Unstable Ground','Power',1,'Return to Gravehold',null,3,'Burrower'),
+    new BossCard('Shard Breaker','Minion',1,'Return to Gravehold',null,7,'Burrower'),
+    new BossCard('Targeted Disintegrate','Power',2,'Return to Gravehold',null,2,'Burrower'),
+    new BossCard('Quicksand Lurker','Minion',2,'Return to Gravehold',null,11,'Burrower'),
+    new BossCard('Portalmaw','Minion',2,'Return to Gravehold',null,10,'Burrower',true),
+    new BossCard('Unravel','Attack',3,'Return to Gravehold',null,null,'Burrower'),
+    new BossCard('Redeploy','Power',3,'Return to Gravehold',null,2,'Burrower'),
+    new BossCard('Magic Eater','Minion',3,'Return to Gravehold',null,15,'Burrower',true),
 
+    new BossCard('Bolstering Strike','Attack',1,'Return to Gravehold',null,null,'Fortress'),
+    new BossCard('Crushing Weight','Power',1,'Return to Gravehold',null,3,'Fortress'),
+    new BossCard('Rockslide Gnasher','Minion',1,'Return to Gravehold',null,5,'Fortress'),
+    new BossCard('Falling City','Attack',2,'Return to Gravehold',null,null,'Fortress'),
+    new BossCard('Plated in Stone','Power',2,'Return to Gravehold',null,3,'Fortress'),
+    new BossCard('Scavenging Squill','Minion',2,'Return to Gravehold',null,11,'Fortress'),
+    new BossCard('Cloister','Attack',3,'Return to Gravehold',null,null,'Fortress'),
+    new BossCard('Scuttling Strike','Power',3,'Return to Gravehold',null,2,'Fortress'),
+    new BossCard('Armored Scalebane','Minion',3,'Return to Gravehold',null,16,'Fortress',true),
 
 // Southern Village
-
+    new BossCard('Quicken Flame','Attack',1,'Southern Village',null,null,'The Burning Kor'),
+    new BossCard('Obscuring Smog','Power',1,'Southern Village',null,2,'The Burning Kor'),
+    new BossCard('Voracious Ember','Minion',1,'Southern Village',null,7,'The Burning Kor'),
+    new BossCard('Smother','Attack',2,'Southern Village',null,null,'The Burning Kor'),
+    new BossCard('All-Consuming Flame','Power',2,'Southern Village',null,2,'The Burning Kor'),
+    new BossCard('Blazing Ember','Minion',2,'Southern Village',null,12,'The Burning Kor'),
+    new BossCard('Endless Immolation','Attack',3,'Southern Village',null,null,'The Burning Kor'),
+    new BossCard('Spontaneous Combustion','Power',3,'Southern Village',null,2,'The Burning Kor'),
+    new BossCard('Ember Lord','Minion',3,'Southern Village',null,23,'The Burning Kor')
 
 
 //placeholders for ease of future additions
-//    new BossCard('PLACEHOLDER','Attack',1,'New Age',null,null,'basic'),
-//    new BossCard('PLACEHOLDER','Power',1,'New Age',null,2,'basic'),
-//    new BossCard('PLACEHOLDER','Minion',1,'New Age',null,2,'basic'),
-//    new BossCard('PLACEHOLDER','Attack',2,'New Age',null,null,'basic'),
-//    new BossCard('PLACEHOLDER','Power',2,'New Age',null,2,'basic'),
-//    new BossCard('PLACEHOLDER','Minion',2,'New Age',null,2,'basic'),
-//    new BossCard('PLACEHOLDER','Attack',3,'New Age',null,null,'basic'),
-//    new BossCard('PLACEHOLDER','Power',3,'New Age',null,2,'basic'),
-//    new BossCard('PLACEHOLDER','Minion',3,'New Age',null,2,'basic'),
+//    new BossCard('PLACEHOLDER','Attack',1,'PLACEHOLDER_EXPANSION',null,null,'basic'),
+//    new BossCard('PLACEHOLDER','Power',1,'PLACEHOLDER_EXPANSION',null,2,'basic'),
+//    new BossCard('PLACEHOLDER','Minion',1,'PLACEHOLDER_EXPANSION',null,2,'basic'),
+//    new BossCard('PLACEHOLDER','Attack',2,'PLACEHOLDER_EXPANSION',null,null,'basic'),
+//    new BossCard('PLACEHOLDER','Power',2,'PLACEHOLDER_EXPANSION',null,2,'basic'),
+//    new BossCard('PLACEHOLDER','Minion',2,'PLACEHOLDER_EXPANSION',null,2,'basic'),
+//    new BossCard('PLACEHOLDER','Attack',3,'PLACEHOLDER_EXPANSION',null,null,'basic'),
+//    new BossCard('PLACEHOLDER','Power',3,'PLACEHOLDER_EXPANSION',null,2,'basic'),
+//    new BossCard('PLACEHOLDER','Minion',3,'PLACEHOLDER_EXPANSION',null,2,'basic'),
 ]
