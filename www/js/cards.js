@@ -83,7 +83,19 @@ mages = [
     new Mage('Mazra','The Ancients'),
     new Mage('Qu','The Ancients'),
     new Mage('Razra','Into the Wild'),
-    new Mage('Inco','Into the Wild')
+    new Mage('Inco','Into the Wild'),
+    new Mage('Arachnos','Outcasts'),
+    new Mage('Dezmodia: Outcasts','Outcasts'),
+    new Mage('Ilya','Outcasts'),
+    new Mage('Kel','Outcasts'),
+    new Mage('Taqren: Outcasts','Outcasts'),
+    new Mage('Thraxir','Outcasts'),
+    new Mage('Z\'hana: Outcasts','Outcasts'),
+    new Mage('Qu: Outcasts','Outcasts'),
+    new Mage('Cairna','Return to Gravehold'),
+    new Mage('Ohat and Ulgimor','Return to Gravehold'),
+    new Mage('Reth','Southern Village'),
+    new Mage('Lucien','Southern Village')
 ];
 
 var Card = function(name, type, cost, expansion){
@@ -476,6 +488,18 @@ var cardsBoss = [
     new BossCard('Needlemaw','Minion',2,'New Age',null,11,'basic'),
     new BossCard('Eternal Watcher','Minion',3,'New Age',null,10,'basic'),
     new BossCard('Monstrosity of Omens','Minion',3,'New Age',null,5,'basic',true),
+
+// nemesis cards from Outcasts - ????????
+
+
+// nemesis cards from Return to Gravehold - 34
+
+
+// nemesis cards from Southern Village - 34
+
+
+
+
 
 // Promos
     new BossCard('Baneful Crux','Power',2,'Promos',null,2,'basic'),
